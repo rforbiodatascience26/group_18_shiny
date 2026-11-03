@@ -86,3 +86,10 @@ base_freqs <- function(dna){
   base_counts <- table(dna_vec)
   return( as.data.frame.table(base_counts) )
 }
+
+# Plot amino acid frequencies using the dawgma package
+plot_aa <- function(aminoacids) {
+
+  dawgma::plot_aa(aminoacids)
+
+}

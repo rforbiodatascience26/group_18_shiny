@@ -2,10 +2,10 @@
 source("app_functions.R")
 server <- function(input, output, session) {
 
-  # ----------------------------------------
-  # 1. VIRTUAL GENE
-  # ----------------------------------------
+  protein_sequence <- reactiveVal(NULL)
 
+
+# virtual gene generator
   output$dna <- renderText({
 
     gene_dna(
@@ -22,10 +22,7 @@ server <- function(input, output, session) {
   })
 
 
-  # ----------------------------------------
-  # 2. TRANSCRIPTION: DNA -> RNA
-  # ----------------------------------------
-
+# transcription from dna to rna
   observeEvent(input$transcribe, {
 
     # Take the DNA sequence entered by the user
@@ -42,22 +39,40 @@ server <- function(input, output, session) {
   })
 
 
-  # ----------------------------------------
-  # 3. TRANSLATION: RNA -> PROTEIN
-  # ----------------------------------------
-
+# translation from rna to protein
   observeEvent(input$translate, {
 
-    # Take the RNA sequence entered by the user
     rna <- input$rna_input
 
-    # Translate RNA into a protein sequence
-    protein <- translate_rna(rna)
+    aminoacids <- translate_rna(rna)
 
-    # Display the protein sequence
+    protein_sequence(aminoacids)
+
     output$protein <- renderText({
-      protein
+      aminoacids
     })
+
+  })
+
+# amino acid frequency plot
+  output$protein_plot <- renderPlot({
+
+    aminoacids <- protein_sequence()
+
+    req(aminoacids)
+
+    dawgma::plot_aa(aminoacids)
+
+  })
+  output$protein_plot <- renderPlot({
+
+    aminoacids <- protein_sequence()
+
+    if (is.null(aminoacids) || aminoacids == "") {
+      return(NULL)
+    }
+
+    plot_aa(aminoacids)
 
   })
 

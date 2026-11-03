@@ -138,9 +138,9 @@ ui <- bslib::page_fluid(
         label = "Translate RNA to Protein"
       ),
 
-      verbatimTextOutput(
-        outputId = "protein"
-      )
+      verbatimTextOutput("protein"),
+
+      plotOutput("protein_plot")
     )
   )
 

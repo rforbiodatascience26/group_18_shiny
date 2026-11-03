@@ -1,6 +1,7 @@
 # Load needed libraries
 library("shiny")
 library("bslib")
+library("dawgma")
 
 # Load needed functions
 source(file = "app_functions.R")
