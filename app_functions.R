@@ -87,9 +87,40 @@ base_freqs <- function(dna){
   return( as.data.frame.table(base_counts) )
 }
 
-# Plot amino acid frequencies using the dawgma package
-plot_aa <- function(aminoacids) {
+# Plot amino acid frequencies
+#' Plot of amino acids in peptide string
+#'
+#' @param peptide_str A string of a peptide
+#' @returns A plot of amino acids in peptide string
 
-  dawgma::plot_aa(aminoacids)
+plot_aa <- function(peptide_str) {
 
+  if (is.null(peptide_str) || peptide_str == "") {
+    return(NULL)
+  }
+
+  # Split peptide into individual amino acids
+  amino_acids <- strsplit(peptide_str, split = "")[[1]]
+
+  # Count each amino acid
+  counts <- as.data.frame(table(amino_acids))
+
+  # Rename columns
+  colnames(counts) <- c("peptide_str", "Counts")
+
+  # Make plot
+  make_plot <- ggplot2::ggplot(
+    counts,
+    ggplot2::aes(
+      x = peptide_str,
+      y = Counts,
+      fill = peptide_str
+    )
+  ) +
+    ggplot2::geom_col() +
+    ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = "none")
+
+  return(make_plot)
 }
+

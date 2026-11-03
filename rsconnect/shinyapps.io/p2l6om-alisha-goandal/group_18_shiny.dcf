@@ -1,0 +1,12 @@
+name: group_18_shiny
+title: group_18_shiny
+username: p2l6om-alisha-goandal
+account: p2l6om-alisha-goandal
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 18348162
+bundleId: 12774143
+url: https://p2l6om-alisha-goandal.shinyapps.io/group_18_shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
