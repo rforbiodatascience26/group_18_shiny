@@ -1,1 +1,1 @@
- https://7vys9g-luna-thorhauge.shinyapps.io/virtual_central_dogma/
+Link to shinyapps.io: https://p2l6om-alisha-goandal.shinyapps.io/group_18_shiny/
